@@ -24,7 +24,7 @@ export default function (x, y, game, socket) {
       }
 
       // Drive forward if W is pressed down
-      if (isDown(game, KEYS.W) && this.speed <= 700) {
+      if (isDown(game, KEYS.W) && this.speed <= 400) {
         this.speed += 10
       } else {
         if (this.speed >= 10) {
@@ -57,7 +57,7 @@ export default function (x, y, game, socket) {
       game.world.bringToTop(this.sprite)
 
       this.updatePlayerName()
-      this.updatePlayerStatusText('speed', this.sprite.body.x - 57, this.sprite.body.y - 18, this.speedText)
+      this.updatePlayerStatusText('speed', this.sprite.body.x - 57, this.sprite.body.y - 39, this.speedText)
 
       // Emit the 'move-player' event, updating the player's data on the server
       socket.emit('move-player', {
@@ -75,7 +75,7 @@ export default function (x, y, game, socket) {
         }
       })
     },
-    updatePlayerName (name, x, y) {
+    updatePlayerName (name = this.socket.id, x = this.sprite.body.x - 57, y = this.sprite.body.y - 59) {
       // Updates the player's name text and position
       this.playerName.text = String(name)
       this.playerName.x = x

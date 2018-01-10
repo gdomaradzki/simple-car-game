@@ -1,4 +1,4 @@
-import createPlayer from './../player/createPlayer'
+import player from './../player'
 import { createText } from '../utils'
 
 const updatePlayers = (socket, otherPlayers, game) => {
@@ -10,11 +10,11 @@ const updatePlayers = (socket, otherPlayers, game) => {
       // In case a player hasn't been created yet
       // We make sure that we won't create a second instance of it
       if (otherPlayers[index] === undefined && index !== socket.id) {
-        const player = createPlayer(data.x, data.y, game)
-        player.playerName = createText(game, player)
-        player.speedText = createText(game, player)
-        player.updatePlayerName(data.playerName.name, data.playerName.x, data.playerName.y)
-        otherPlayers[index] = player
+        const newPlayer = player(data.x, data.y, game)
+        newPlayer.playerName = createText(game, newPlayer)
+        newPlayer.speedText = createText(game, newPlayer)
+        newPlayer.updatePlayerName(data.playerName.name, data.playerName.x, data.playerName.y)
+        otherPlayers[index] = newPlayer
       }
 
       playersFound[index] = true
@@ -24,6 +24,7 @@ const updatePlayers = (socket, otherPlayers, game) => {
         // Update players target but not their real position
         otherPlayers[index].target_x = data.x
         otherPlayers[index].target_y = data.y
+        otherPlayers[index].target_rotation = data.angle
 
         otherPlayers[index].playerName.target_x = data.playerName.x
         otherPlayers[index].playerName.target_y = data.playerName.y

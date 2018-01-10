@@ -23,38 +23,35 @@ export default function (x, y, game, socket) {
         D: Phaser.Keyboard.D
       }
 
+      if (this.velocity) {
+        this.emitPlayerData()
+      }
+
       // Drive forward if W is pressed down
       if (isDown(game, KEYS.W) && this.speed <= 400) {
         this.speed += 10
-        this.emitPlayerData()
       } else {
         if (this.speed >= 10) {
           this.speed -= 10
-          this.emitPlayerData()
         }
       }
 
       // Drive backwards if S is pressed down
       if (isDown(game, KEYS.S) && this.speed >= -200) {
         this.speed -= 5
-        this.emitPlayerData()
       } else {
         if (this.speed <= -5) {
           this.speed += 5
-          this.emitPlayerData()
         }
       }
 
       // Steers the car
       if (isDown(game, KEYS.A)) {
         this.sprite.body.angularVelocity = -5 * (this.speed / 1000)
-        this.emitPlayerData()
       } else if (isDown(game, KEYS.D)) {
         this.sprite.body.angularVelocity = 5 * (this.speed / 1000)
-        this.emitPlayerData()
       } else {
         this.sprite.body.angularVelocity = 0
-        this.emitPlayerData()
       }
 
       this.sprite.body.velocity.x = this.speed * Math.cos((this.sprite.body.angle - 360) * 0.01745)

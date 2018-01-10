@@ -1,4 +1,4 @@
-import Game from './states/Game'
+import Game from './state/Game'
 
 class App extends Phaser.Game {
   constructor () {

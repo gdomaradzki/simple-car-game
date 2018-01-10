@@ -24,7 +24,7 @@ export default function (x, y, game, socket) {
       }
 
       // Only emit if the player is moving
-      if (this.velocity) {
+      if (this.velocity !== 0) {
         this.emitPlayerData()
       }
 

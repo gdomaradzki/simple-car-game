@@ -23,6 +23,7 @@ export default function (x, y, game, socket) {
         D: Phaser.Keyboard.D
       }
 
+      // Only emit if the player is moving
       if (this.velocity) {
         this.emitPlayerData()
       }

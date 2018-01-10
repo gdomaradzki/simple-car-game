@@ -15,7 +15,10 @@ const config = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader']
+        loader: 'babel-loader',
+        options: {
+          presets: ['env']
+        }
       }
     ]
   },

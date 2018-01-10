@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --progress --colors",
-    "dev": "nodemon server/index.js --exec babel-node"
+    "dev": "nodemon server/index.js --exec babel-node",
+    "start": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",

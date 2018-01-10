@@ -1,5 +1,5 @@
 const playerMovementInterpolation = otherPlayers => {
-  for (let player of otherPlayers) {
+  for (let player in otherPlayers) {
     if (player.target_x !== undefined) {
       // Interpolate the player's position
       player.sprite.body.x += (player.target_x - player.sprite.body.x) * 0.30

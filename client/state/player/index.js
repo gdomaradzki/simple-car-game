@@ -63,6 +63,7 @@ export default function (x, y, game, socket) {
       socket.emit('move-player', {
         x: this.sprite.body.x,
         y: this.sprite.body.y,
+        angle: this.sprite.body.rotation,
         playerName: {
           name: this.playerName.text,
           x: this.playerName.x,
